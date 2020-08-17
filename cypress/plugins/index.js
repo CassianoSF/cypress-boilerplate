@@ -4,9 +4,6 @@ const fs = require('fs')
 module.exports = (on) => {
     on('file:preprocessor', async (file) => {
         var options = {
-            standalone: true,
-            evaling: true,
-            target: 'node',
             targetPath: file.outputPath.replace(/\.imba\d?$/,'.js')
         }
         var source = fs.readFileSync(file.filePath, { encoding: 'utf-8'})
