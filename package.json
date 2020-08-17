@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "start": "npx snowpack dev",
+    "dev": "npx snowpack dev",
     "build": "npx snowpack build",
-    "dev": "npx snowpack dev"
+    "test": "imba cypress/run-test.imba"
   },
   "snowpack": {
     "mount": {
@@ -11,7 +11,7 @@
     },
     "devOptions": {
       "out": "public",
-      "open": "default",
+      "open": "none",
       "bundle": true
     },
     "install": [],
