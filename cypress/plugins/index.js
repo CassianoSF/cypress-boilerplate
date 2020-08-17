@@ -1,18 +1,16 @@
-const webpack = require('@cypress/webpack-preprocessor')
+const imbac = require('imba/dist/compiler.js');
+const fs = require('fs')
 
 module.exports = (on) => {
-    on('file:preprocessor', webpack({
-        webpackOptions: {
-            module: {
-                rules: [{
-                    test: /\.imba$/,
-                    loader: 'imba/loader',
-                }]
-            },
-            resolve: {
-                extensions: [".imba",".js", ".json"]
-            },
-        },
-        watchOptions: {},
-    }))
+    on('file:preprocessor', async (file) => {
+        var options = {
+            standalone: true,
+            evaling: true,
+            target: 'node',
+            targetPath: file.outputPath.replace(/\.imba\d?$/,'.js')
+        }
+        var source = fs.readFileSync(file.filePath, { encoding: 'utf-8'})
+        var compile = await imbac.compile(source, options)
+        return file.outputPath + '.js'
+    })
 }
