@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "npx snowpack dev",
     "build": "npx snowpack build",
-    "test": "imba cypress/run-test.imba"
+    "test": "imba cypress/run-test.imba",
+    "start": "imba cypress/open-test.imba"
   },
   "snowpack": {
     "mount": {
